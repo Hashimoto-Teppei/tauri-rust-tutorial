@@ -1,0 +1,6 @@
+# Windows でも改行コードを LF に統一する（rustfmt / Prettier の差分や lockfile の揺れを防ぐ）
+* text=auto eol=lf
+
+*.png binary
+*.ico binary
+*.icns binary

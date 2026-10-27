@@ -1,0 +1,55 @@
+# 演習と完成版アプリが macOS / Windows / Linux でビルド・テストできることを確認する
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # Windows の既定 (pwsh) は複数行のうち途中のコマンドの失敗を見逃すので bash に揃える
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Linux の Tauri 前提パッケージ
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+
+      # mise.toml のバージョンで node / pnpm / rust を入れる（学習者と同じ環境）
+      - uses: jdx/mise-action@v5
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            exercises
+            reference/notes-app/src-tauri
+
+      - name: 演習（模範解答のテストと、演習版のコンパイル）
+        working-directory: exercises
+        run: |
+          cargo test --locked -p solutions
+          cargo test --locked -p practice --no-run
+
+      - name: 完成版アプリ（フロントエンド）
+        working-directory: reference/notes-app
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      - name: 完成版アプリ（Rust）
+        working-directory: reference/notes-app/src-tauri
+        run: |
+          cargo fmt --check
+          cargo clippy --locked -- -D warnings
+          cargo test --locked
