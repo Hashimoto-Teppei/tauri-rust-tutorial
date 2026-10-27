@@ -158,7 +158,7 @@ pub fn delete_note(store: State<'_, NoteStore>, id: u64) -> AppResult<()> {
 
 ## 7.6 組み立て：`lib.rs`
 
-保存先は OS ごとのアプリデータディレクトリ（macOS なら `~/Library/Application Support/com.example.notes/`）です。パスの取得に `AppHandle` が要るので、起動時に1回呼ばれる `setup` フックで State を登録します。
+保存先は OS ごとのアプリデータディレクトリです（macOS なら `~/Library/Application Support/com.example.notes/`、Windows なら `C:\Users\<ユーザー名>\AppData\Roaming\com.example.notes\`）。パスの取得に `AppHandle` が要るので、起動時に1回呼ばれる `setup` フックで State を登録します。
 
 `lib.rs` を丸ごと次の内容に置き換えます。
 

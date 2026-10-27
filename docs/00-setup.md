@@ -5,7 +5,11 @@
 ## 1. OS の前提ツール（mise では入らない）
 
 - **macOS**：`xcode-select --install`（Xcode Command Line Tools）
-- **Windows**：[Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) で「C++ によるデスクトップ開発」を選択（リンカとして Part 1 の `cargo test` でも必須）。WebView2 は Windows 10/11 に標準搭載
+- **Windows**：
+  - [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) で「C++ によるデスクトップ開発」を選択（リンカとして Part 1 の `cargo test` でも必須）
+  - WebView2 は Windows 10（1803 以降）/ 11 に標準搭載
+  - [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows)（`winget install Microsoft.PowerShell`）を推奨。本書のコマンドは `cmd1 && cmd2` の形を使うため、`&&` が使えない Windows PowerShell 5.1 では1つずつ実行してください
+  - [Git for Windows](https://gitforwindows.org/)
 - **Linux**：https://v2.tauri.app/start/prerequisites/#linux の webkit2gtk などを入れる（本チュートリアルの動作確認は macOS のみ）
 
 ## 2. mise のインストールと有効化
@@ -17,11 +21,14 @@ echo 'eval "$(mise activate zsh)"' >> ~/.zshrc && exec zsh
 ```
 
 ```powershell
-# Windows (PowerShell)
+# Windows（PowerShell 7）
 winget install jdx.mise
+if (!(Test-Path $PROFILE)) { New-Item -Path $PROFILE -Force }
 Add-Content $PROFILE '(&mise activate pwsh) | Out-String | Invoke-Expression'
 # PowerShell を開き直す
 ```
+
+> Windows では mise が内部で rustup を使い、MSVC 版のツールチェーン（`x86_64-pc-windows-msvc` など）が入ります。以前に GNU 版（`-gnu`）の Rust を入れていた場合は、`rustup default stable-msvc` で MSVC 版を既定にしてください。
 
 ## 3. ツールチェーンのインストール
 
@@ -52,6 +59,10 @@ mise ls --current   # mise.toml のバージョンになっていれば OK
 
 VS Code なら **rust-analyzer** 拡張は必須です（型推論結果がインレイ表示され、学習効率が段違い）。
 Tauri 用に **Tauri** 拡張も入れておくと `tauri.conf.json` の補完が効きます。
+
+リポジトリを VS Code・Cursor・Windsurf で開くと、`.vscode/extensions.json` に書いた推奨拡張（rust-analyzer、Tauri、EditorConfig）のインストールを促されます。
+
+AI エディタやエージェントを使う場合は [付録B](appendix-b-ai-agents.md) を参照してください。リポジトリ直下の `AGENTS.md` に、エージェント向けの作業ガイドを置いています。
 
 ## 動作確認
 

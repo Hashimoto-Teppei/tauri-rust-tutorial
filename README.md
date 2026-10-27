@@ -43,6 +43,15 @@ cargo test -p practice ch02::tests::test_longest   # 単一テスト
 cargo test -p solutions              # 模範解答（全テスト通過済み）
 ```
 
+## 対応環境
+
+- **OS**：macOS / Windows（Linux もビルドとテストは CI で確認済み）。OS ごとの準備は [第0章](docs/00-setup.md) を参照
+- **ランタイム**：`mise.toml` で Node / pnpm / Rust のバージョンを固定
+- **エディタ**：VS Code / Cursor / Windsurf では、推奨拡張（`.vscode/extensions.json`）のインストールを促されます
+- **AI エージェント**：作業ガイドは `AGENTS.md` にあり、Claude Code（`CLAUDE.md` 経由）、Codex、Cursor、GitHub Copilot、Gemini CLI（`.gemini/settings.json` 経由）が読み込みます。詳しくは [付録B](docs/appendix-b-ai-agents.md)
+
+[![CI](https://github.com/Hashimoto-Teppei/tauri-rust-tutorial/actions/workflows/ci.yml/badge.svg)](https://github.com/Hashimoto-Teppei/tauri-rust-tutorial/actions/workflows/ci.yml)
+
 ## 学習のコツ
 
 - **コンパイラのエラーメッセージを全文読む。** Rust のエラーは「どう直せばいいか」まで書いてあることが多い

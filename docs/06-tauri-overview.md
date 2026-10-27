@@ -125,7 +125,7 @@ setGreetMsg(await invoke("greet", { name }));
 ## 6.4 開発のコツ
 
 - **フロントの変更は HMR で即反映、Rust の変更は自動で再ビルド＆再起動** されます
-- WebView の DevTools は右クリック →「検証」で開けます（dev ビルドのみ）
+- WebView の DevTools は右クリック →「検証」で開けます（dev ビルドのみ。ショートカットは macOS が ⌘⌥I、Windows が Ctrl+Shift+I）
 - Rust の `println!` / `dbg!` は `pnpm tauri dev` を実行したターミナルに出ます
 - Rust 側のテストは `cargo test --manifest-path src-tauri/Cargo.toml`
 

@@ -18,6 +18,8 @@ pnpm tauri build
 | Windows | `.msi`（WiX）, `.exe`（NSIS） |
 | Linux | `.deb`, `.rpm`, `.AppImage` |
 
+Windows で `.msi` の作成時に `failed to run light.exe` が出る場合は、「設定 → アプリ → オプション機能 → Windows のその他の機能」で **VBSCRIPT** を有効にしてください。
+
 **クロスコンパイルは基本できません**。各 OS 向けにはその OS 上でビルドします（CI なら `tauri-apps/tauri-action` の GitHub Actions がマトリクスビルドの定番）。
 
 デバッグ用の速いビルド：`pnpm tauri build --debug`（DevTools も使える）
