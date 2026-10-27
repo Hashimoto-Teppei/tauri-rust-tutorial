@@ -1,0 +1,5 @@
+# このリポジトリで使うランタイムを固定する。`mise install` で全員同じ環境になる
+[tools]
+node = "24.22.1"
+pnpm = "12.9.1"
+rust = { version = "1.99.1", components = "rustfmt,clippy,rust-analyzer" }

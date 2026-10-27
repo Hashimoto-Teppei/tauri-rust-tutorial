@@ -1,0 +1,57 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color-scheme: light dark;
+}
+body {
+  margin: 0;
+}
+.layout {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 220px;
+  padding: 8px;
+  border-right: 1px solid #8884;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+.sidebar li {
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.sidebar li.active {
+  background: #8883;
+}
+.editor {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.editor input {
+  font-size: 1.2em;
+}
+.editor textarea {
+  flex: 1;
+  resize: none;
+  font-family: ui-monospace, monospace;
+}
+.actions {
+  display: flex;
+  gap: 6px;
+}
+.status {
+  font-size: 0.85em;
+  opacity: 0.7;
+  margin: 0;
+}
