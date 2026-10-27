@@ -48,3 +48,8 @@ cargo test -p solutions              # 模範解答（全テスト通過済み�
 - **コンパイラのエラーメッセージを全文読む。** Rust のエラーは「どう直せばいいか」まで書いてあることが多い
 - 所有権で詰まったら、まず `.clone()` で動かしてから後で最適化してよい
 - 公式リソース: [The Rust Book（日本語版）](https://doc.rust-jp.rs/book-ja/) / [Rust by Example](https://doc.rust-jp.rs/rust-by-example-ja/) / [Tauri v2 Docs](https://v2.tauri.app/)
+
+## ライセンス
+
+- `docs/` と各 README の文章：[CC BY 4.0](LICENSE-docs)（出典を表示すれば、改変・再配布・商用利用が可能）
+- `exercises/`・`reference/` などのコード：[MIT](LICENSE)
