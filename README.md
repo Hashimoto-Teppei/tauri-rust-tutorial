@@ -28,6 +28,7 @@ TypeScript / React / Python の経験があり、Electron Forge でデスクト�
 | **付録** | | | |
 | A | [便利なライブラリ](docs/appendix-a-libraries.md) | 公式プラグイン、Rust クレート、型共有、DevTools、CI | 必要に応じて |
 | B | [AI エージェントでの開発](docs/appendix-b-ai-agents.md) | Context7、llms.txt、rust-analyzer LSP、Tauri MCP、エージェントスキル | 必要に応じて |
+| C | [逆引きレシピ](docs/appendix-c-recipes.md) | 「TS / Python / Electron ならこう書く」から Rust・Tauri の書き方を引く。エラーメッセージ別の対処 | 必要に応じて |
 
 ## 進め方
 

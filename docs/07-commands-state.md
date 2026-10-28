@@ -327,7 +327,7 @@ export default App;
 | 症状 | 原因と対処 |
 |---|---|
 | `no method named 'path' found` | `use tauri::Manager;` がない |
-| 起動直後に `state not managed for field ...` で panic | `setup` 内の `app.manage(...)` が実行されていない（`.setup` を2回呼ぶと後の呼び出しが勝つ） |
+| invoke が `state not managed for field ...` で reject | `setup` 内の `app.manage(...)` が実行されていない（`.setup` を2回呼ぶと後の呼び出しが勝つ） |
 | invoke が `command xxx not found` で reject | `generate_handler!` への登録漏れ、またはフロントの command 名の綴りミス |
 | invoke が `missing required key ...` で reject | 引数名の不一致。Rust の `note_id` はフロントでは `noteId` |
 
