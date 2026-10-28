@@ -205,7 +205,7 @@ assert_eq!(json, r#"{"windowWidth":800}"#);
 | 型付きで呼ぶ | preload + `contextBridge` | `src/api.ts` のような薄いラッパー（[7.7](07-commands-state.md#77-フロント側apits)） |
 | 失敗をフロントに伝える | `throw` → reject | `Result<T, AppError>` の `Err` → reject。`AppError` は `Serialize` を実装する（[7.2](07-commands-state.md#72-エラー型errorrs)） |
 | 呼び出し元のウィンドウを知る | `event.sender` | 引数に `window: tauri::WebviewWindow` を足す（フロントからは渡さない） |
-| 重い処理で UI を固めない | — | `async fn` の command にする。同期 `fn` はメインスレッドで動く |
+| 重い処理で UI を固めない | — | `async fn` の command にする。同期 `fn` はメインスレッドで動く。`State<'_, T>` などの参照を受け取るなら戻り値は `Result`（C.12） |
 | 新しい command を足す | `ipcMain.handle` を追加 | 関数を書き、**`generate_handler![]` に登録** |
 
 ```rust
@@ -229,7 +229,7 @@ const label = await invoke<string>("window_label"); // 引数は不要
 | 設定の保存 | `electron-store` | `store` プラグイン（[第9章 やってみよう](09-plugins-capabilities.md#やってみよう)） |
 | 自前の JSON に保存 | `fs.writeFileSync` | `NoteStore::save` の「一時ファイル → rename」（[7.4](07-commands-state.md#74-データ層notesrs)） |
 | SQLite | `better-sqlite3` | `sql` プラグイン、または Rust 側で `rusqlite` / `sqlx`（[付録A](appendix-a-libraries.md)） |
-| 秘密情報 | `safeStorage` | `keyring` クレート（[付録A](appendix-a-libraries.md)）。`stronghold` プラグインは非推奨（v3 で削除予定） |
+| 秘密情報 | `safeStorage` | `keyring` クレート、`stronghold` プラグイン（[付録A](appendix-a-libraries.md)） |
 
 ## C.9 Rust → フロントへの通知
 
